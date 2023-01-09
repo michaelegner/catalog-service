@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +39,7 @@ class BookValidationTests {
                 .map(ConstraintViolation::getMessage).collect(Collectors.toList());
         assertThat(constraintViolationMessages)
                 .contains("The book ISBN must be defined.")
-                .contains("The ISBN format must be valid.");
+				.contains("The ISBN format must be valid.");
     }
 
     @Test
@@ -49,7 +48,7 @@ class BookValidationTests {
         Set<ConstraintViolation<Book>> violations = validator.validate(book);
         assertThat(violations).hasSize(1);
         assertThat(violations.iterator().next().getMessage())
-                .isEqualTo("The ISBN format must be valid.");
+				.isEqualTo("The ISBN format must be valid.");
     }
 
     @Test
